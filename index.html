@@ -32,18 +32,69 @@
     
 	
 	<div class="tile-area no-padding">
-            <div class="tile-container bg-darkCobalt" style="width: 9000px">
+            <div class="tile-container bg-darkCobalt" style="width: 940px">
                 <div class="tile-large bg-lighterBlue" data-role="tile"></div>
                 <div class="tile-square bg-cobalt" data-role="tile"></div>
                 <div class="tile-small bg-red" data-role="tile"></div>
-				<div class="tile-small bg-red" data-role="tile"></div><div class="tile-small bg-red" data-role="tile"></div><div class="tile-small bg-red" data-role="tile"></div><div class="tile-small bg-red" data-role="tile"></div><div class="tile-small bg-red" data-role="tile"></div><div class="tile-small bg-red" data-role="tile"></div><div class="tile-small bg-red" data-role="tile"></div><div class="tile-small bg-red" data-role="tile"></div><div class="tile-small bg-red" data-role="tile"></div>
                 <div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
+				<div class="tile-small bg-orange" data-role="tile"></div>
                 <div class="tile-small bg-green" data-role="tile"></div>
                 <div class="tile-small bg-pink" data-role="tile"></div>
                 <div class="tile-wide bg-lightGreen" data-role="tile"></div>
             </div>
         </div>
 		
-		
+		<script>
+        (function($) {
+            $.StartScreen = function(){
+                var plugin = this;
+                var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+                plugin.init = function(){
+                    setTilesAreaSize();
+                    if (width > 640) addMouseWheel();
+                };
+
+                var setTilesAreaSize = function(){
+                    var groups = $(".tile-group");
+                    var tileAreaWidth = 80;
+                    $.each(groups, function(i, t){
+                        if (width <= 640) {
+                            tileAreaWidth = width;
+                        } else {
+                            tileAreaWidth += $(t).outerWidth() + 80;
+                        }
+                    });
+                    $(".tile-area").css({
+                        width: tileAreaWidth
+                    });
+                };
+
+                var addMouseWheel = function (){
+                    $("body").mousewheel(function(event, delta, deltaX, deltaY){
+                        var page = $(document);
+                        var scroll_value = delta * 50;
+                        page.scrollLeft(page.scrollLeft() - scroll_value);
+                        return false;
+                    });
+                };
+
+                plugin.init();
+            }
+        })(jQuery);
+		</script>
 </body>
 </html>
